@@ -219,6 +219,39 @@ int main() {
 #### Bài 3-9
 Giải:
 ```c
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+  int chiSoCu, chiSoMoi;
+  float donGia;
+
+  cout << "Nhap vao chi so cu (KW): ";
+  cin >> chiSoCu;
+
+  cout << "Nhap vao chi so moi (KW): ";
+  cin >> chiSoMoi;
+
+  int soKwTieuThu = chiSoMoi - chiSoCu;
+
+  if (soKwTieuThu <= 50) {
+    donGia = 1.750;
+  } else if (soKwTieuThu <= 100) {
+    donGia = 2.225;
+  } else if (soKwTieuThu <= 200) {
+    donGia = 2.750;
+  } else {
+    donGia = 3.250;
+  }
+
+  cout << fixed << setprecision(3);
+  float tienDien = soKwTieuThu * donGia;
+  cout << "So KW da tieu thu: " << soKwTieuThu << "KW" << endl;
+  cout << "So tien dien phai tra: " << tienDien << "VND";
+
+  return 0;
+}
 ```
 
 #### Bài 3-10
