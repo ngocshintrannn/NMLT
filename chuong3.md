@@ -165,6 +165,55 @@ int main() {
 #### Bài 3-8
 Giải:
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int thang, nam;
+
+  // Nhập tháng và năm
+  cout << "Nhap vao thang: ";
+  cin >> thang;
+  cout << "Nhap vao nam: ";
+  cin >> nam;
+
+  // Kiểm tra tháng hợp lệ
+  if (thang < 1 || thang > 12) {
+    cout << "Thang khong hop le!" << endl;
+    return 1; // Thoát chương trình với mã lỗi 1
+  }
+
+  // Xác định mùa trong năm
+  string mua;
+  switch (thang) {
+    case 12:
+    case 1:
+    case 2:
+      mua = "Mua Dong";
+      break;
+    case 3:
+    case 4:
+    case 5:
+      mua = "Mua Xuan";
+      break;
+    case 6:
+    case 7:
+    case 8:
+      mua = "Mua Ha";
+      break;
+    case 9:
+    case 10:
+    case 11:
+      mua = "Mua Thu";
+      break;
+  }
+
+  // In ra màn hình kết quả
+  cout << "Thang " << thang << " nam " << nam << " thuoc " << mua << endl;
+
+  return 0;
+}
 ```
 
 #### Bài 3-9
