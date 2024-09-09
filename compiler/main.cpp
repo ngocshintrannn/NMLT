@@ -1,19 +1,28 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 int main() {
-  float x, fx;
+  int n;
+  bool laSoNguyenTo = true;
 
-  cout << "Nhap mot so thuc: ";
-  cin >> x;
-
-  if (x > 0) {
-    fx = pow(x, 2) + (3 * x) + 5;
-    cout << "f(" << x << ") = " << fx << endl;
+  cout << "Nhap mot so: ";
+  cin >> n;
+  
+  if (n <= 1) {
+    laSoNguyenTo = false;
   } else {
-    fx = -pow(x, 2) - (3 * x) - 5;
-    cout << "f(" << x << ") = " << fx << endl;
+    for (int i = 2; i <= n / 2; i++) {
+      if (n % i == 0) {
+        laSoNguyenTo = false;
+        break;
+      }
+    }
+  }
+
+  if (laSoNguyenTo) {
+    cout << n << " la so nguyen to" << endl;
+  } else {
+    cout << n << " khong phai la so nguyen to" << endl;
   }
 
   return 0;
