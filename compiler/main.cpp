@@ -2,40 +2,19 @@
 
 using namespace std;
 
-// Hàm kiểm tra số hoàn thiện
-bool laSoHoanThien(int n) {
-    if (n <= 1) {
-        return false; // 1 và các số nhỏ hơn không phải số hoàn thiện
-    }
-
-    int sum = 1;
-    for (int i = 2; i * i <= n; ++i) {
-        if (n % i == 0) {
-            sum += i;
-            if (i * i != n) {
-                sum += n / i; 
-            }
-        }
-    }
-
-    return (sum == n);
-}
-
 int main() {
-    int n, count = 0;
+    float chuyenCan, tbKiemTra, diemThi;
 
-    cout << "Nhap vao so nguyen duong n: ";
-    cin >> n;
+    cout << "Nhap vao diem chuyen can, tb kiem tra va diem thi: ";
+    cin >> chuyenCan >> tbKiemTra >> diemThi;
 
-    for (int i = 1; i <= n; ++i) {
-        if (laSoHoanThien(i)) {
-          cout << i << " ";
-            count++;
-        }
+    float tongKet = chuyenCan * 0.1 + tbKiemTra * 0.4 + diemThi * 0.5;
+
+    if (tongKet >= 5) {
+        cout << "Dau" << endl;
+    } else {
+        cout << "Rot" << endl;
     }
-
-    cout << endl;
-    cout << "Cac so hoan thien tu 1 den " << n << " la: " << count;
 
     return 0;
 }
