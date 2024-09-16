@@ -1,42 +1,29 @@
 #include <iostream>
-#include <algorithm>
 
 using namespace std;
 
 int main() {
-  int a, b, c;
+    long long n;
 
-  // Nhập ba số nguyên từ người dùng
-  cout << "Nhap ba so nguyen: ";
-  cin >> a >> b >> c;
+    cout << "Nhập vào một số nguyên dương (tối đa 9 chữ số): ";
+    cin >> n;
 
-  // Cách 1: Sử dụng vòng lặp for
-  cout << "Cach 1: Vong lap for" << endl;
-  for (int i = 0; i < 2; ++i) {
-    if (a > b) swap(a, b);
-    if (b > c) swap(b, c);
-  }
-  cout << a << " " << b << " " << c << endl;
+    // Kiểm tra số âm và số vượt quá giới hạn
+    if (n <= 0 || n > 999999999) {
+        cout << "Số không hợp lệ." << endl;
+        return 1; // Thoát chương trình với mã lỗi
+    }
 
-  // Cách 2: Sử dụng vòng lặp while
-  cout << "Cach 2: Vong lap while" << endl;
-  int i = 0;
-  while (i < 2) {
-    if (a > b) swap(a, b);
-    if (b > c) swap(b, c);
-    i++;
-  }
-  cout << a << " " << b << " " << c << endl;
+    int soChuSo = 0;
+    long long temp = n; 
 
-  // Cách 3: Sử dụng vòng lặp do while
-  cout << "Cach 3: Vong lap do while" << endl;
-  i = 0;
-  do {
-    if (a > b) swap(a, b);
-    if (b > c) swap(b, c);
-    i++;
-  } while (i < 2);
-  cout << a << " " << b << " " << c << endl;
+    // Đếm số chữ số
+    while (temp > 0) {
+        temp /= 10;
+        soChuSo++;
+    }
 
-  return 0;
+    cout << "Số " << n << " có " << soChuSo << " chữ số." << endl;
+
+    return 0;
 }
