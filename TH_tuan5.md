@@ -146,11 +146,80 @@ int main() {
 #### Bài 5
 
 ```c
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int a, b, c;
+
+    cout << "Nhap hai 3 so: ";
+    cin >> a >> b >> c;
+
+    if (a == 0) {
+        if (b == 0) {
+            if (c == 0) {
+                cout << "PTVSN" << endl;
+            } else {
+                cout << "PTVN" << endl;
+            }
+        } else {
+            cout << "Phuong trinh co 1 nghiem x = " << -c / b << endl;
+        }
+    } else {
+        double delta = b * b - 4 * a * c;
+        if (delta < 0) {
+            cout << "PTVN" << endl;
+        } else if (delta == 0) {
+            cout << "Phuong trinh co nghiem kep: " << -b / (2 * a) << endl;
+        } else {
+            cout << "Phuong trinh co hai nghiem phan biet: " << (-b + sqrt(delta)) / (2 * a) << " va " << (-b - sqrt(delta)) / (2 * a) << endl;
+        }
+    }
+
+    return 0;
+}
 ```
 
 #### Bài 6
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a, b, c;
+
+    cout << "Nhap hai 3 so: ";
+    cin >> a >> b >> c;
+
+    if (a > 0 && b > 0 && c > 0) {
+        if (a + b > c && a + c > b && b + c > a) {
+            if (a == b && b == c) {
+                cout << "Tam giac deu";
+            } else if (a == b || a == c || b == c) {
+                if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a) {
+                    cout << "Tam giac vuong can";
+                } else {
+                    cout << "Tam giac can";
+                }
+            } else {
+                if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a) {
+                    cout << "Tam giac vuong";
+                } else {
+                    cout << "Tam giac thuong";
+                }
+            }
+        } else {
+            cout << "Khong phai tam giac";
+        }
+    } else {
+        cout << "Khong phai tam giac";
+    }
+    return 0;
+}
 ```
 
 #### Bài 7
@@ -259,6 +328,79 @@ int main() {
 #### Bài 10
 
 ```c
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Nhap so nguyen co 3 so: ";
+    cin >> n;
+
+    if (n >= 100 && n <= 999) {
+        cout << "a.\n";
+        if (n % 2 == 0) {
+            cout << n << " la so chan\n";
+        } else {
+            cout << n << " la so le\n";
+        }
+
+        cout << "b.\n";
+        bool coSoChan = false;
+        int temp = n;
+        while (temp > 0) {
+            int so = temp % 10; // lấy chữ số cuối
+            if (so % 2 == 0) {
+            coSoChan = true;
+            break;
+            }
+            temp /= 10; // xoá chữ số cuối
+        }
+
+        if (coSoChan) {
+            cout << n << " co it nhat mot chu so chan\n";
+        } else {
+            cout << n << " khong co chu so chan\n";
+        }
+
+        cout << "c.\n";
+        bool toanSoChan = true;
+        temp = n;
+        while (temp > 0) {
+            int so = temp % 10; // lấy chữ số cuối
+            if (so % 2 != 0) {
+            toanSoChan = false;
+            break;
+            }
+            temp /= 10; // xoá chữ số cuối
+        }
+
+        if (toanSoChan) {
+            cout << n << " co toan chu so chan\n";
+        } else {
+            cout << n << " khong co toan chu so chan\n";
+        }
+
+        cout << "d.\n";
+        int daoNguoc = 0, goc = n;
+        while (n != 0) {
+            int so1 = n % 10;
+            daoNguoc = daoNguoc * 10 + so1;
+            n /= 10;
+        }
+
+        if (goc == daoNguoc) {
+            cout << goc << " la so ganh\n";
+        } else {
+            cout << goc << " khong phai la so ganh\n";
+        }
+    } else {
+        cout << "Nhap du lieu khong dung";
+    }
+    return 0;
+}
 ```
 
 # Buổi 2
