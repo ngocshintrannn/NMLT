@@ -285,7 +285,7 @@ int main() {
     case 23: ngayThang = "23rd"; cout << ngayThang; break;
     case 31: ngayThang = "31st"; cout << ngayThang; break;
     default: ngayThang = to_string(ngay) + "th"; cout << ngayThang;
-    }
+  }
 
   return 0;
 }
@@ -329,7 +329,6 @@ int main() {
 
 ```c
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
@@ -408,31 +407,319 @@ int main() {
 #### Bài 1
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    char color;
+
+    cout << "Nhap mau: ";
+    cin >> color;
+
+    switch (color) {
+        case 'r':
+        case 'R':
+            cout << "Red";
+            break;
+        case 'g':
+        case 'G':
+            cout << "Green";
+            break;
+        case 'b':
+        case 'B':
+            cout << "Blue";
+            break;
+        default:
+            cout << "Back";
+            break;
+    }
+    return 0;
+}
 ```
 
 #### Bài 2
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  char chonChucNang;
+
+  cout << "Nhap vao +, -, *, /: ";
+  cin >> chonChucNang;
+
+  if (chonChucNang == '+' || chonChucNang == '-' || chonChucNang == '*' || chonChucNang == '/') {
+    int a, b;
+    cout << "Nhap vao a, b: ";
+    cin >> a >> b;
+
+    switch (chonChucNang) {
+      case '+':
+        cout << "a + b = " << a + b << endl;
+        break;
+      case '-':
+        cout << "a - b = " << a - b << endl;
+        break;
+      case '*':
+        cout << "a * b = " << a * b << endl;
+        break;
+      case '/':
+        if (b == 0) {
+          cout << "Khong the chia cho 0" << endl;
+        } else {
+          cout << "a / b = " << a / b << endl;
+        }
+        break;
+    }
+  } else {
+    cout << "Khong co chuc nang nay" << endl;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 3
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+bool isLeapYear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool isValidDate(int day, int month, int year) {
+  if (year < 1 || month < 1 || month > 12 || day < 1) {
+    return false;
+  }
+
+  int daysInMonth;
+  switch (month) {
+    case 4: case 6: case 9: case 11:
+      daysInMonth = 30;
+      break;
+    case 2:
+      daysInMonth = isLeapYear(year) ? 29 : 28;
+      break;
+    default:
+      daysInMonth = 31;
+  }
+
+  return day <= daysInMonth;
+}
+
+int main() {
+  int ngay, thang, nam;
+
+  cout << "Nhap vao ngay, thang, nam: ";
+  cin >> ngay >> thang >> nam;
+
+  if (isValidDate(ngay, thang, nam)) {
+    cout << "Ngay thang nam hop le." << endl;
+  } else {
+    cout << "Ngay thang nam khong hop le." << endl;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 4
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int n;
+  cout << "Nhap mot so tu 10 den 999: ";
+  cin >> n;
+
+  if (n < 10 || n > 999) {
+    cout << "So khong hop le!" << endl;
+    return 1;
+  }
+
+  int donVi = n % 10;
+  int chuc = (n / 10) % 10;
+  int tram = n / 100;
+
+  switch (tram) {
+    case 1: cout << "mot tram "; break;
+    case 2: cout << "hai tram "; break;
+    case 3: cout << "ba tram "; break;
+    case 4: cout << "bon tram "; break;
+    case 5: cout << "nam tram "; break;
+    case 6: cout << "sau tram "; break;
+    case 7: cout << "bay tram "; break;
+    case 8: cout << "tam tram "; break;
+    case 9: cout << "chin tram "; break;
+  }
+
+  switch (chuc) {
+    case 1: cout << "muoi "; break;
+    case 2: cout << "hai muoi "; break;
+    case 3: cout << "ba muoi "; break;
+    case 4: cout << "bon muoi "; break;
+    case 5: cout << "nam muoi "; break;
+    case 6: cout << "sau muoi "; break;
+    case 7: cout << "bay muoi "; break;
+    case 8: cout << "tam muoi "; break;
+    case 9: cout << "chin muoi "; break;
+    case 0: if (donVi > 0 && tram > 0) cout << "le "; break;
+  }
+
+  switch (donVi) {
+    case 1: cout << "một "; break;
+    case 2: cout << "hai "; break;
+    case 3: cout << "ba "; break;
+    case 4: cout << "bon "; break;
+    case 5: cout << "nam "; break;
+    case 6: cout << "sau "; break;
+    case 7: cout << "bay "; break;
+    case 8: cout << "tam "; break;
+    case 9: cout << "chin "; break;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 5
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int n;
+  cout << "Nhap nam sinh tu 1900 den 2021: ";
+  cin >> n;
+
+  if (n < 1900 || n > 2021) {
+    cout << "Nam khong dung yeu cau!" << endl;
+    return 1;
+  }
+
+  cout << "a.\n";
+  int tuoi = 2024 - n;
+  cout << "Tuoi cua ban la: " << tuoi << endl;
+
+  cout << "b.\n";
+  switch (tuoi) {
+    case 0 ... 17:
+      cout << "Tre em" << endl;
+      break;
+    case 18 ... 40:
+      cout << "Thanh nien" << endl;
+      break;
+    case 41 ... 60:
+      cout << "Trung nien" << endl;
+      break;
+    default:
+      cout << "Nghi huu" << endl;
+      break;
+  }
+
+  cout << "c.\n";
+  cout << "Con giap cua ban la: ";
+  switch (n % 12) {
+    case 0:
+      cout << "Than";
+      break;
+    case 1:
+      cout << "Dau";
+      break;
+    case 2:
+      cout << "Tuat";
+      break;
+    case 3:
+      cout << "Hoi";
+      break;
+    case 4:
+      cout << "Ty";
+      break;
+    case 5:
+      cout << "Suu";
+      break;
+    case 6:
+      cout << "Dan";
+      break;
+    case 7:
+      cout << "Meo";
+      break;
+    case 8:
+      cout << "Thin";
+      break;
+    case 9:
+      cout << "Ty";
+      break;
+    case 10:
+      cout << "Ngo";
+      break;
+    case 11:
+      cout << "Mui";
+      break;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 6
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int trieuChung, ngayThuoc, thanhTien;
+  cout << "1 - Ho\n2 - So mui\n3 - Viem hong\n4 - Dau dau\n";
+  cout << "Nhap trieu chung (1 - 4): ";
+  try_again_trieuChung:
+  cin >> trieuChung;
+
+  if (trieuChung < 1 || trieuChung > 4) {
+    cout << "Nhap lai tu 1 - 4: ";
+    goto try_again_trieuChung;
+  }
+
+  cout << "Nhap so ngay dung thuoc: ";
+  try_again_ngayThuoc:
+  cin >> ngayThuoc;
+
+  if (ngayThuoc <= 0) {
+    cout << "Nhap lai so lon hon 0: ";
+    goto try_again_ngayThuoc;
+  }
+
+  switch (trieuChung) {
+    case 1:
+      thanhTien = (ngayThuoc * 2) * 1200;
+      break;
+    case 2:
+      thanhTien = (ngayThuoc * 2) * 2000;
+      break;
+    case 3:
+      thanhTien = (ngayThuoc * 2) * 3000;
+      break;
+    case 4:
+      thanhTien = (ngayThuoc * 2) * 5000;
+      break;
+  }
+
+  cout << "So tien phai tra: " << thanhTien << endl;
+
+  return 0;
+}
 ```
 
 #### Bài 7
@@ -443,4 +730,73 @@ int main() {
 #### Bài 8
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+bool isLeapYear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool isValidDate(int day, int month, int year) {
+  if (year < 1 || month < 1 || month > 12 || day < 1) {
+    return false;
+  }
+
+  int daysInMonth;
+  switch (month) {
+    case 4: case 6: case 9: case 11:
+      daysInMonth = 30;
+      break;
+    case 2:
+      daysInMonth = isLeapYear(year) ? 29 : 28;
+      break;
+    default:
+      daysInMonth = 31;
+  }
+
+  return day <= daysInMonth;
+}
+
+int main() {
+  int ngay, thang, nam;
+  string ngayThang;
+
+  cout << "Nhap ngay, thang, nam: ";
+  cin >> ngay >> thang >> nam;
+
+  if (!isValidDate(ngay, thang, nam)) {
+    cout << "Du lieu khong hop le!" << endl;
+    return 1;
+  }
+
+  switch (ngay) {
+    case 1: ngayThang = "1st"; cout << ngayThang; break;
+    case 2: ngayThang = "2nd"; cout << ngayThang; break;
+    case 3: ngayThang = "3rd"; cout << ngayThang; break;
+    case 21: ngayThang = "21st"; cout << ngayThang; break;
+    case 22: ngayThang = "22nd"; cout << ngayThang; break;
+    case 23: ngayThang = "23rd"; cout << ngayThang; break;
+    case 31: ngayThang = "31st"; cout << ngayThang; break;
+    default: ngayThang = to_string(ngay) + "th"; cout << ngayThang;
+  }
+
+  switch(thang) {
+    case 1: cout << " January " << nam << endl; break;
+    case 2: cout << " February " << nam << endl; break;
+    case 3: cout << " March " << nam << endl; break;
+    case 4: cout << " April " << nam << endl; break;
+    case 5: cout << " May " << nam << endl; break;
+    case 6: cout << " June " << nam << endl; break;
+    case 7: cout << " July " << nam << endl; break;
+    case 8: cout << " August " << nam << endl; break;
+    case 9: cout << " September " << nam << endl; break;
+    case 10: cout << " October " << nam << endl; break;
+    case 11: cout << " November " << nam << endl; break;
+    case 12: cout << " December " << nam << endl; break;
+    default: cout << "Invalid month!" << endl; break;
+  }
+
+  return 0;
+}
 ```

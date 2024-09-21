@@ -1,73 +1,69 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
+bool isLeapYear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool isValidDate(int day, int month, int year) {
+  if (year < 1 || month < 1 || month > 12 || day < 1) {
+    return false;
+  }
+
+  int daysInMonth;
+  switch (month) {
+    case 4: case 6: case 9: case 11:
+      daysInMonth = 30;
+      break;
+    case 2:
+      daysInMonth = isLeapYear(year) ? 29 : 28;
+      break;
+    default:
+      daysInMonth = 31;
+  }
+
+  return day <= daysInMonth;
+}
+
 int main() {
-    int n;
+  int ngay, thang, nam;
+  string ngayThang;
 
-    cout << "Nhap so nguyen co 3 so: ";
-    cin >> n;
+  cout << "Nhap ngay, thang, nam: ";
+  cin >> ngay >> thang >> nam;
 
-    if (n >= 100 && n <= 999) {
-        cout << "a.\n";
-        if (n % 2 == 0) {
-            cout << n << " la so chan\n";
-        } else {
-            cout << n << " la so le\n";
-        }
+  if (!isValidDate(ngay, thang, nam)) {
+    cout << "Du lieu khong hop le!" << endl;
+    return 1;
+  }
 
-        cout << "b.\n";
-        bool coSoChan = false;
-        int temp = n;
-        while (temp > 0) {
-            int so = temp % 10; // lấy chữ số cuối
-            if (so % 2 == 0) {
-            coSoChan = true;
-            break;
-            }
-            temp /= 10; // xoá chữ số cuối
-        }
+  switch (ngay) {
+    case 1: ngayThang = "1st"; cout << ngayThang; break;
+    case 2: ngayThang = "2nd"; cout << ngayThang; break;
+    case 3: ngayThang = "3rd"; cout << ngayThang; break;
+    case 21: ngayThang = "21st"; cout << ngayThang; break;
+    case 22: ngayThang = "22nd"; cout << ngayThang; break;
+    case 23: ngayThang = "23rd"; cout << ngayThang; break;
+    case 31: ngayThang = "31st"; cout << ngayThang; break;
+    default: ngayThang = to_string(ngay) + "th"; cout << ngayThang;
+  }
 
-        if (coSoChan) {
-            cout << n << " co it nhat mot chu so chan\n";
-        } else {
-            cout << n << " khong co chu so chan\n";
-        }
+  switch(thang) {
+    case 1: cout << " January " << nam << endl; break;
+    case 2: cout << " February " << nam << endl; break;
+    case 3: cout << " March " << nam << endl; break;
+    case 4: cout << " April " << nam << endl; break;
+    case 5: cout << " May " << nam << endl; break;
+    case 6: cout << " June " << nam << endl; break;
+    case 7: cout << " July " << nam << endl; break;
+    case 8: cout << " August " << nam << endl; break;
+    case 9: cout << " September " << nam << endl; break;
+    case 10: cout << " October " << nam << endl; break;
+    case 11: cout << " November " << nam << endl; break;
+    case 12: cout << " December " << nam << endl; break;
+    default: cout << "Invalid month!" << endl; break;
+  }
 
-        cout << "c.\n";
-        bool toanSoChan = true;
-        temp = n;
-        while (temp > 0) {
-            int so = temp % 10; // lấy chữ số cuối
-            if (so % 2 != 0) {
-            toanSoChan = false;
-            break;
-            }
-            temp /= 10; // xoá chữ số cuối
-        }
-
-        if (toanSoChan) {
-            cout << n << " co toan chu so chan\n";
-        } else {
-            cout << n << " khong co toan chu so chan\n";
-        }
-
-        cout << "d.\n";
-        int daoNguoc = 0, goc = n;
-        while (n != 0) {
-            int so1 = n % 10;
-            daoNguoc = daoNguoc * 10 + so1;
-            n /= 10;
-        }
-
-        if (goc == daoNguoc) {
-            cout << goc << " la so ganh\n";
-        } else {
-            cout << goc << " khong phai la so ganh\n";
-        }
-    } else {
-        cout << "Nhap du lieu khong dung";
-    }
-    return 0;
+  return 0;
 }
