@@ -3,52 +3,22 @@
 using namespace std;
 
 int main() {
-  char player1, player2;
+  int n, countBay = 0;
 
-  cout << "Nhap player 1, player 2: ";
-  cin >> player1 >> player2;
+  cin >> n;
 
-  switch (player1) {
-    case 'B': case 'b':
-      switch (player2) {
-        case 'B': case 'b':
-          cout << "Hoa\n";
-          break;
-        case 'K': case 'k':
-          cout << "Player 1 thang\n";
-          break;
-        case 'G': case 'g':
-          cout << "Player 2 thang\n";
-          break;
-      }
+  while (true) {
+    int temp = n % 10;
+    if (temp == 7) {
+      countBay++;
+    }
+    n /= 10;
+    if (n == 0) {
       break;
-    case 'K': case 'k':
-      switch (player2) {
-        case 'B': case 'b':
-          cout << "Player 2 thang\n";
-          break;
-        case 'K': case 'k':
-          cout << "Hoa\n";
-          break;
-        case 'G': case 'g':
-          cout << "Player 1 thang\n";
-          break;
-      }
-      break;
-    case 'G': case 'g':
-      switch (player2) {
-        case 'B': case 'b':
-          cout << "Player 1 thang\n";
-          break;
-        case 'K': case 'k':
-          cout << "Player 2 thang\n";
-          break;
-        case 'G': case 'g':
-          cout << "Hoa\n";
-          break;
-      }
-      break;
+    }
   }
+
+  cout << "Co " << countBay << " so bay";
 
   return 0;
 }
