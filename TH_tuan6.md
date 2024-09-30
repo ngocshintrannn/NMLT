@@ -586,54 +586,320 @@ int main() {
 #### Bài 1
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    float litXang, kmDaDi;
+
+    while (true) {
+        cout << "Hay nhap vao so lit xang da dung (-1 de ket thuc): ";
+        cin >> litXang;
+        if (litXang == -1) {
+            break;
+        }
+        cout << "Hay nhap vao so km da chay: ";
+        cin >> kmDaDi;
+        float kmPerLit = kmDaDi / litXang;
+        cout << "So km/lit cho binh xang nay la: " << kmPerLit << " km/lit" << endl;
+    }
+
+    return 0;
+}
 ```
 
 #### Bài 2
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    float doanhThuNV;
+
+    while (true) {
+        cout << "Hay nhap doanh thu cua nhan vien (-1 de ket thuc): ";
+        cin >> doanhThuNV;
+        if (doanhThuNV == -1) {
+            break;
+        }
+        float luong = (doanhThuNV * 0.09) + 200;
+        cout << "Luong cua nhan vien la: $" << luong << endl;
+    }
+
+    return 0;
+}
 ```
 
 #### Bài 3
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int thang;
+
+    while (true) {
+        cout << "Nhap thang trong nam (-1 de ket thuc): ";
+        try_again:
+        cin >> thang;
+        if (thang == -1) {
+            break;
+        } else if (thang < 1 || thang > 12) {
+            cout << "Nhap lai: ";
+            goto try_again;
+        }
+        switch (thang) {
+            case 12:case 1:case 2:
+            cout << "Mua Dong\n";
+            break;
+            case 3:case 4:case 5:
+            cout << "Mua Xuan\n";
+            break;
+            case 6:case 7:case 8:
+            cout << "Mua He\n";
+            break;
+            case 9:case 10:case 11:
+            cout << "Mua Thu\n";
+            break;
+        }
+    }
+    return 0;
+}
 ```
 
 #### Bài 4
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int thu;
+
+    while (true) {
+        cout << "Nhap thu trong tuan (-1 de ket thuc): ";
+        try_again:
+        cin >> thu;
+        if (thu == -1) {
+            break;
+        } else if (thu < 2 || thu > 8) {
+            cout << "Nhap lai: ";
+            goto try_again;
+        }
+        switch (thu) {
+            case 2:
+            cout << "Monday\n";
+            break;
+            case 3:
+            cout << "Tuesday\n";
+            break;
+            case 4:
+            cout << "Wednesday\n";
+            break;
+            case 5:
+            cout << "Thursday\n";
+            break;
+            case 6:
+            cout << "Friday\n";
+            break;
+            case 7:
+            cout << "Saturday\n";
+            break;
+            case 8:
+            cout << "Sunday\n";
+            break;
+        }
+    }
+    return 0;
+}
 ```
 
 #### Bài 5
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int dienTruoc, dienSau;
+
+    while (true) {
+        cout << "Nhap so dien thang truoc (-1 de ket thuc): ";
+        try_again_dienTruoc:
+        cin >> dienTruoc;
+        if (dienTruoc == -1)break;
+        else if (dienTruoc < 0) {
+            cout << "Nhap lai: ";
+            goto try_again_dienTruoc;
+        }
+        cout << "Nhap so dien thang sau: ";
+        try_again_dienSau:
+        cin >> dienSau;
+        if (dienSau <= dienTruoc) {
+            cout << "Khong duoc thap hon dien truoc: ";
+            goto try_again_dienSau;
+        }
+        int soDien = dienSau - dienTruoc;
+        cout << "So tien dien da tieu thu: " << soDien << endl;
+        break;
+    }
+    return 0;
+}
 ```
 
 #### Bài 6
 
 ```c
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n, maxNumber = INT_MIN;
+
+    while (true) {
+        cin >> n;
+        if (n == 0) {
+            break;
+        }
+        if (n > maxNumber) {
+            maxNumber = n;
+        }
+    }
+    cout << "Gia tri lon nhat: " << maxNumber;
+    return 0;
+}
 ```
 
 #### Bài 7
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a,b;
+    while (true) {
+        cout << "Nhap tu va mau: ";
+        cin >> a >> b;
+        if (a == 0 || b == 0) {
+            break;
+        }
+        cout << "Dang thap phan la: " << (float)a/b << endl;
+    }
+    return 0;
+}
 ```
 
 #### Bài 8
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, sum=0;
+    while (true) {
+        cout << "Nhap so nguyen duong: ";
+        try_again:
+        cin >> n;
+        if (n < 0) {
+            cout << "Nhap lai: ";
+            goto try_again;
+        }
+        int temp;
+        while (n != 0) {
+            temp = n % 10;
+            sum += temp;
+            n /= 10;
+        }
+        break;
+    }
+    cout << "Tong cac chu so cua so nguyen duong la: " << sum;
+    return 0;
+}
 ```
 
 #### Bài 9
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, sum = 0;
+    while (true) {
+        again:
+        cin >> n;
+        if (n == 0) {
+            break;
+        } else if (n > 0) {
+            sum += n;
+            goto again;
+        }
+    }
+    cout << sum << endl;
+    return 0;
+}
 ```
 
 #### Bài 10
 
 ```c
+#include <iostream>
+using namespace std;
+
+int main() {
+    int gioVao, gioRa, phutVao, phutRa;
+    while (true) {
+        cout << "Nhap gio vao, phut vao, gio ra, phut ra: ";
+        try_again:
+        cin >> gioVao >> phutVao >> gioRa >> phutRa;
+        if (gioVao < 0 || gioVao >= 24 || phutVao < 0 || phutVao >= 60 || gioRa < 0 || gioRa >= 24 || phutRa < 0 || phutRa >= 60) {
+            cout << "Nhap lai: ";
+            goto try_again;
+        } else if (gioRa < gioVao || (gioRa == gioVao && phutRa < phutVao)) {
+            cout << "Nhap lai: ";
+            goto try_again;
+        } else {
+            int thanhTien = ((gioRa - gioVao) + (((float)phutRa - phutVao) / 60)) * 6000;
+            cout << "So tien phai tra: " << thanhTien;
+            break;
+        }
+    }
+    return 0;
+}
 ```
 
 #### Bài 11
 
 ```c
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    int n, i = 0;
+    srand(time(0));
+    int random_number = rand() % 10 + 1;
+    while (i <= 3) {
+        cout << "Doan so tu 1 den 10: ";
+        try_again:
+        cin >> n;i++;
+        if (n == random_number) {
+            cout << "Xin chuc mung! Ban da chien thang.";
+            break;
+        } else if (i == 3) {
+            cout << "Ban da het luot doan. So bi mat la: " << random_number;
+            break;
+        } else {
+            cout << "Hay doan lai!: ";
+            goto try_again;
+        }
+    }
+    return 0;
+}
 ```
