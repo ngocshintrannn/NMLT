@@ -438,25 +438,202 @@ int main() {
 #### Bài 1
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int prime[10000001];
+
+void sievePrime() {
+  //cho tất cả là 1
+  for (int i = 0; i <= 1000000; i++) {
+    prime[i] = 1;
+  } // set tất cả là số nt
+  prime[0] = prime[1] = 0; //số 0 và 1 khong là số nt nên set là 0
+  //duyệt qua từ 2 đến căn bậc 2 của 1000000 = 10^6 là 1000
+  for (int i = 2; i <= 1000; i++) {
+    for (int j = i*i; j<= 1000000; j+=i) {
+      prime[j] = 0; //các số là bội của i sẽ không phải là số nt
+    }
+  }
+}
+
+int main() {
+  sievePrime();
+  while (true) {
+    int n;
+    cout << "Nhap mot so nguyen duong lon hon 2 (-1 de dung): ";
+    cin >> n;
+
+    if (n == -1) break;
+    if (n >= 0 && n <= 2) {
+      cout << "Nhap lai!\n";
+      continue;
+    }
+
+    if(prime[n]) cout << n << " la so nguyen to\n";
+    else cout << n << " khong la so nguyen to\n";
+  }
+  return 0;
+}
 ```
 
 #### Bài 2
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  while (true) {
+    int tuSo, mauSo;
+    cout << "Nhap vao tu va mau (mau so 0 de ket thuc): ";
+    cin >> tuSo >> mauSo;
+    if (mauSo == 0) break;
+
+    // tim ucln cua tu va mau
+    int a = tuSo, b = mauSo;
+    while (b != 0) {
+      int temp = b;
+      b = a % b;
+      a = temp;
+    }
+
+    // rut gon phan so
+    tuSo /= a; mauSo /= a;
+
+    cout << "Phan so da rut gon: " << tuSo << "/" << mauSo << endl; 
+  }
+  return 0;
+}
 ```
 
 #### Bài 3
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  while (true) {
+    int n, sum = 0;
+    cin >> n;
+    if (n <= 0) break;
+
+    //tach tung chu so va tinh tong
+    while (n > 0) {
+      sum += n % 10;
+      n /= 10;
+    }
+
+    cout << sum << endl;
+  }
+  return 0;
+}
 ```
 
 #### Bài 4
 
 ```c
+#include <iostream>
+#include <string>
 
+using namespace std;
+
+string docSoCoMotChuSo(int so) {
+    switch (so) {
+        case 0: return "khong";
+        case 1: return "mot";
+        case 2: return "hai";
+        case 3: return "ba";
+        case 4: return "bon";
+        case 5: return "nam";
+        case 6: return "sau";
+        case 7: return "bay";
+        case 8: return "tam";
+        case 9: return "chin";
+        default: return "";
+    }
+}
+
+string docSoCoHaiChuSo(int so) {
+    if (so < 10) {
+        return docSoCoMotChuSo(so);
+    }
+    int chuc = so / 10;
+    int donVi = so % 10;
+    string result = docSoCoMotChuSo(chuc) + " muoi";
+    if (donVi == 1) {
+        result += " mot";
+    } else if (donVi == 4) {
+        result += " tu";
+    } else if (donVi != 0) {
+        result += " " + docSoCoMotChuSo(donVi);
+    }
+    return result;
+}
+
+string docSoCoBaChuSo(int so) {
+    if (so < 100) {
+        return docSoCoHaiChuSo(so);
+    }
+    int tram = so / 100;
+    int soDu = so % 100;
+    string result = docSoCoMotChuSo(tram) + " tram";
+    if (soDu != 0) {
+        if (soDu < 10) {
+            result += " le " + docSoCoMotChuSo(soDu);
+        } else {
+            result += " " + docSoCoHaiChuSo(soDu);
+        }
+    }
+    return result;
+}
+
+string docSo(int so) {
+    if (so < 0 || so > 999999) {
+        return "So khong hop le.";
+    }
+    if (so == 0) {
+        return "khong";
+    }
+
+    string result = "";
+    int nghin = so % 1000;
+    so /= 1000;
+    int trieu = so % 1000;
+    so /= 1000;
+
+    if (so > 0) {
+        result += docSoCoBaChuSo(so) + " trieu";
+    }
+    if (trieu > 0) {
+        if (result != "") {
+            result += " ";
+        }
+        result += docSoCoBaChuSo(trieu) + " nghin";
+    }
+    if (nghin > 0) {
+        if (result != "") {
+            result += " ";
+        }
+        result += docSoCoBaChuSo(nghin);
+    }
+
+    return result;
+}
+
+int main() {
+    int so;
+    cout << "Nhap so nguyen (1 < so < 1 trieu): ";
+    cin >> so;
+
+    cout << "Cach doc: " << docSo(so) << endl;
+
+    return 0;
+}
 ```
 
 #### Bài 5
