@@ -639,29 +639,167 @@ int main() {
 #### Bài 5
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int primes[10000001];
+
+void sievePrime() {
+  for (int i = 0; i <= 1000000; i++) {
+    primes[i] = 1;
+  }
+
+  primes[0] = primes[1] = 0;
+
+  for (int i = 2; i <= 1000; i++) {
+    if (primes[i]) {
+      for (int j = i*i; j <= 1000000; j+=i) {
+        primes[j] = 0;
+      }
+    }
+  }
+}
+
+int main() {
+  sievePrime();
+  for (int i = 1; i <= 100000; i++) {
+    if (primes[i]) {
+      cout << i << "\n";
+    }
+  }
+  return 0;
+}
 ```
 
 #### Bài 6
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  while (true) {
+    int n; 
+    cin >> n;
+
+    if (n < 2) break;
+
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+      if (i != n) cout << i << " + ";
+      else cout << i << " = ";
+      sum += i;
+    }
+
+    cout << sum << endl;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 7
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int prime[10000001];
+
+void sievePrime() {
+  for (int i = 0; i <= 1000000; i++) prime[i] = 1;
+
+  prime[0] = prime[1] = 0;
+
+  for (int i = 2; i <= 1000; i++) {
+    if (prime[i]) {
+      for (int j = i * i; j <= 1000000; j += i) prime[j] = 0;
+    }
+  }
+}
+
+int main() {
+  sievePrime();
+  int n = 1000;
+  for (int i = 0; i <= n; i++) {
+    if (prime[i]) {
+      int sau = i + 2;
+      if (prime[sau]) {
+        cout << i << " - " << sau << endl;
+        i++;
+      }
+    }
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 8
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  int n = 9;
+  
+  int count = (n + 1) / 2;
+  for (int i = 1; i <= n; i += 2) {
+    count--;
+    for (int k = count; k >= 0; k--) cout << " ";
+    for (int j = 1; j <= i; j++) cout << "*";
+    cout << endl;
+  }
+
+  for (int i = n - 2; i >= 1; i -= 2) {
+    count++;
+    for (int k = 0; k <= count; k++) cout << " ";
+    for (int j = i; j >= 1; j--) cout << "*";
+    cout << endl;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 9
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  int n;
+  cout << "Nhap mot so le tu 1 --> 19: ";
+  try_again:
+  cin >> n;
+
+  if (n < 1 || n > 19 || n % 2 == 0) {
+    cout << "Vui long nhap so le tu 1 --> 19: ";
+    goto try_again;
+  }
+  
+  int count = (n + 1) / 2;
+  for (int i = 1; i <= n; i += 2) {
+    count--;
+    for (int k = count; k >= 0; k--) cout << " ";
+    for (int j = 1; j <= i; j++) cout << "*";
+    cout << endl;
+  }
+
+  for (int i = n - 2; i >= 1; i -= 2) {
+    count++;
+    for (int k = 0; k <= count; k++) cout << " ";
+    for (int j = i; j >= 1; j--) cout << "*";
+    cout << endl;
+  }
+
+  return 0;
+}
 ```
