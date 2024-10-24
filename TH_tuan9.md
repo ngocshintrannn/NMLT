@@ -146,17 +146,93 @@ int main() {
 #### Bài 6
 
 ```c
+#include <iostream>
 
+using namespace std;
+
+void toSeconds(int hour, int minute, int second, int& totalSecond) {
+  int hourToSec = hour * 60 * 60;
+  int minuteToSec = minute * 60;
+  totalSecond = hourToSec + minuteToSec + second;
+}
+
+int main() {
+  int hoursFirst, minutesFirst, secondsFirst;
+  int hoursEnd, minutesEnd, secondsEnd;
+  cout << "Nhap gio, phut, giay dau (enter): ";
+  cin >> hoursFirst >> minutesFirst >> secondsFirst;
+  cout << "Nhap gio, phut, giay cuoi: ";
+  cin >> hoursEnd >> minutesEnd >> secondsEnd;
+
+  if (hoursFirst <= 0 || hoursFirst >= 24 || minutesFirst <= 0 || minutesFirst >= 60 || secondsFirst <= 0 || secondsFirst >= 60 || hoursEnd <= 0 || hoursEnd >= 24 || minutesEnd <= 0 || minutesEnd >= 60 || secondsEnd <= 0 || secondsEnd >= 60 || hoursEnd < hoursFirst) {
+    cout << "Gio khong hop le!";
+    return 1;
+  }
+
+  int hours = hoursEnd - hoursFirst, minutes = minutesEnd - minutesFirst, seconds = secondsEnd - secondsFirst, totalSeconds;
+
+
+  toSeconds(hours, minutes, seconds, totalSeconds);
+
+  cout << totalSeconds << " giay";
+
+  return 0;
+}
 ```
 
 #### Bài 7
 
 ```c
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+void hypotenuse(double side1, double side2, double& side3) {
+  side3 = sqrt(pow(side1,2) + pow(side2,2));
+  cout << "Do dai canh huyen la: " << side3;
+}
+
+int main() {
+  double side1, side2, side3;
+  cout << "Nhap 2 canh goc vuong: ";
+  cin >> side1 >> side2;
+
+  hypotenuse(side1, side2, side3);
+
+  return 0;
+}
 ```
 
 #### Bài 8
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+void inBCC(int n) {
+  for (int i = 2; i <= n; i++) {
+    cout << "Bang cuu chuong " << i << " :\n";
+    for (int j = 1; j <= 10; j++) {
+      int add = i * j;
+      cout << i << " x " << j << " = " << add << endl;
+    }
+  }
+}
+
+int main() {
+  int n;
+  cin >> n;
+  if (n <= 1) {
+    cout << "Vui long nhap n > 1!";
+    return 1;
+  }
+
+  inBCC(n);
+
+  return 0;
+}
 ```
 
 # Buổi 2
