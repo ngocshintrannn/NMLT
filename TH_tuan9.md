@@ -240,14 +240,131 @@ int main() {
 #### Bài 1
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+void nhapDiem(short& x) {
+  short toan, ly, anh;
+  cout << "Nhap diem toan ly anh: ";
+  nhap_lai:
+  cin >> toan >> ly >> anh;
+
+  if (toan < 0 || ly < 0 || anh < 0) {
+    cout << "Nhap lai: ";
+    goto nhap_lai;
+  }
+
+  x = (toan + ly + anh) / 3;
+}
+
+int main() {
+  short tb;
+  nhapDiem(tb);
+  cout << "Diem trung binh 3 mon la: " << tb;
+
+  return 0;
+}
 ```
 
 #### Bài 2
 
 ```c
+#include <iostream>
+
+using namespace std;
+
+void inKyTu(char c, short soLan) {
+  for (int i = 1; i <= soLan; i++) {
+    cout << c << " ";
+  }
+  cout << endl;
+}
+
+int main() {
+  char c;
+  short soLan;
+  int i = 1;
+
+  nhap_lai:
+  cout << "Nhap ky tu va so lan in: ";
+  cin >> c >> soLan;
+
+  inKyTu(c, soLan);
+
+  if (i < 4) {
+    i++;
+    goto nhap_lai;
+  }
+
+  return 0;
+}
 ```
 
 #### Bài 3
 
 ```c
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+
+using namespace std;
+
+#define LEN 119   
+#define XUONG 115   
+#define TRAI 97   
+#define PHAI 100
+
+void goto_xy(short x, short y) {
+  static HANDLE h = NULL;
+  if (!h) {
+    h = GetStdHandle(STD_OUTPUT_HANDLE);
+  }
+  COORD c = {x, y};
+  SetConsoleCursorPosition(h, c);
+}
+
+int main() {
+  cout << "Nhan phim w / s / a / d de di chuyen o vuong\nBam Esc de thoat";
+  int x = 40, y = 12;
+  char key;
+  
+  while (true) {
+    goto_xy(x, y);
+    cout << (char)15;
+
+    key = getch();
+
+    switch (key) {
+      case LEN:
+        goto_xy(x, y);
+        cout << " "; cout << (char)15;
+        y--; break;
+
+      case XUONG:
+        goto_xy(x, y);
+        cout << " "; cout << (char)15;
+        y++; break;
+
+      case PHAI:
+        goto_xy(x, y);
+        cout << " "; cout << (char)15;
+        x++; break;
+
+      case TRAI:
+        goto_xy(x, y);
+        cout << " "; cout << (char)15;
+        x--; break;
+        
+      case 27: return 0;
+    }
+
+    if (x < 0)  x = 0;
+    if (y < 0)  y = 0;
+    if (x > 79) x = 79;
+    if (y > 24) y = 24;
+  }
+
+  return 0;
+}
 ```
