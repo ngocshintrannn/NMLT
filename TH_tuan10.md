@@ -251,19 +251,121 @@ int main() {
 #### Bài 2
 
 ```c
+#include <iostream>
+#include <cmath>
 
+using namespace std;
+
+double cals1(int n, double s1) {
+  for (int i = 1; i <= n; ++i) {
+		s1 += i;
+	}
+  return s1 / n;
+}
+
+double cals2(int n, double s2) {
+  for (int i = 1; i <= n; ++i) {
+		s2 += pow(i, 2);
+	}
+  return sqrt(s2);
+}
+
+int main() {
+	int n,s1 = 0;
+	double s2 = 0;
+	cin >> n;
+
+	if (n < 0) {
+		cout << "Nhap sai";
+		return 1;
+	}
+
+  s1 = cals1(n, s1);
+  s2 = cals2(n, s2);
+
+	cout << s1 << endl;
+	cout << s2;
+	return 0;
+}
 ```
 
 #### Bài 3
 
 ```c
+#include <iostream>
+#include <cmath>
 
+using namespace std;
+
+unsigned long long factorial(int num) {
+    unsigned long long result = 1;
+    for (int i = 1; i <= num; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+double c(int n, int k) {
+    if (k > n) return 0;
+    unsigned long long result1 = factorial(n);
+    unsigned long long result2 = factorial(k);
+    unsigned long long result3 = factorial(n - k);
+    return static_cast<double>(result1) / (result2 * result3);
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+
+    if (n < 0 || k < 0) {
+        cout << "n và k phai la cac so khong am." << endl;
+        return 1;
+    }
+
+    cout << "C(" << n << ", " << k << ") = " << c(n, k) << endl;
+    return 0;
+}
 ```
 
 #### Bài 4
 
 ```c
+#include <iostream>
+#include <cmath>
 
+using namespace std;
+
+double cals3(int n, double s3) {
+  s3 = 0;
+  for (int i = 1; i <= n; i++){
+    s3 = sqrt(3 + s3);
+  }
+  return s3;
+}
+
+double cals4(int n, double s4) {
+  s4 = 0;
+  for (int i = 1; i <= n; i++){
+    s4 = 1 / (2 + s4);
+  }
+  return s4;
+}
+
+int main() {
+  double n, s3 = 0, s4 = 0;
+  cin >> n;
+  if (n <= 0) {
+    cout << "Nhap sai\n";
+    return 1;
+  }
+  
+  s3 = cals3(n, s3);
+  s4 = cals4(n, s4);
+
+  cout << "s3 = " << s3 << endl;
+  cout << "s4 = " << s4;
+  return 0;
+}
 ```
 
 #### Bài 5
