@@ -1,5 +1,33 @@
 
 # Buổi 1
+#### Tổ hợp chập k của n
+
+```c
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Hàm tính tổ hợp chập k của n
+long long combination(int n, int k) {
+    if (k > n) return 0;
+    if (k == 0 || k == n) return 1;
+    if (k > n - k) k = n - k; // C(n, k) == C(n, n-k)
+    long long result = 1;
+    for (int i = 0; i < k; ++i) {
+        result *= (n - i);
+        result /= (i + 1);
+    }
+    return result;
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    cout << "C(" << n << ", " << k << ") = " << combination(n, k);
+    return 0;
+}
+```
+
 #### Số Fibonacci
 
 ```c
