@@ -1,5 +1,42 @@
 
 # Buổi 1
+#### Phi hàm Euler
+
+```c
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int prime[10000001];
+
+void sieved() {
+  for (int i = 0; i <= 1000000; i++) prime[i] = 1;
+  prime[0] = prime[1] = 0;
+  for (int i = 2; i <= 1000; i++) {
+    if (prime[i]) {
+      for (int j = i * i; j <= 1000000; j += i) prime[j] = 0;
+    }
+  }
+}
+
+int phi(int n) {
+  int res = n;
+  for (int i = 2; i <= sqrt(n); i++) {
+    if (prime[i] && n % i == 0) {
+      res -= res / i;
+      while (n % i == 0) n /= i;
+    }
+  }
+  if (n > 1) res -= res / n;
+  return res;
+}
+
+int main() {
+  sieved();
+  int n; cin >> n;
+  cout << phi(n);
+}
+```
 
 #### Bài 1
 
