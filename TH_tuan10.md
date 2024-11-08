@@ -1,5 +1,79 @@
 
 # Buổi 1
+
+#### Lý thuyết số - Đồng dư
+
+```c
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//(a + b) % c = (a % c) + (b % c) % c
+//(a - b) % c = (a % c) - (b % c) % c
+//(a * b) % c = (a % c) * (b % c) % c
+//(a / b) % c = (a % c) * (b^-1 % c) % c
+//(a ^ m) % c = (a % c) ^ m % c
+
+long long addMod(long long a, long long b, long long c) {
+  return (a % c + b % c) % c;
+}
+
+long long subMod(long long a, long long b, long long c) {
+  return (a % c - b % c + c) % c;
+}
+
+long long mulMod(long long a, long long b, long long c) {
+  return (a % c * b % c) % c;
+}
+
+long long modInverse(long long b, long long c) {
+    long long x, y;
+    long long g = gcdExtended(b, c, &x, &y);
+    if (g != 1)
+        return -1; // Nghịch đảo không tồn tại
+    else {
+        long long res = (x % c + c) % c;
+        return res;
+    }
+}
+
+long long gcdExtended(long long a, long long b, long long *x, long long *y) {
+  if (a == 0) {
+    *x = 0, *y = 1;
+    return b;
+  }
+  long long x1, y1;
+  long long gcd = gcdExtended(b % a, a, &x1, &y1);
+  *x = y1 - (b / a) * x1;
+  *y = x1;
+  return gcd;
+}
+
+long long divMod(long long a, long long b, long long c) {
+  long long inv = modInverse(b, c);
+  if (inv == -1)
+    return -1; // Không thể chia
+  else
+    return (a % c * inv % c) % c;
+}
+
+long long powMod(long long a, long long m, long long c) {
+  long long res = 1;
+  a = a % c;
+  while (m > 0) {
+    if (m % 2 == 1)
+      res = (res * a) % c;
+    m = m >> 1;
+    a = (a * a) % c;
+  }
+  return res;
+}
+
+int main() {
+  cout << addMod(5, 3, 7);
+}
+```
+
 #### Tổ hợp chập k của n
 
 ```c
