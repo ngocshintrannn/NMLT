@@ -1,6 +1,28 @@
 
 # Buổi 1
 
+#### Tích luỹ thừa nhị phân (Luỹ thừa nhanh)
+
+```c
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long binPow(long long a, long long b) {
+  long long res = 1;
+  while (b > 0) {
+    if (b % 2 == 1) res *= a;
+    a *= a;
+    b /= 2;
+  }
+  return res;
+}
+
+int main() {
+  cout << binPow(2, 10000000000);
+}
+```
+
 #### Lý thuyết số - Đồng dư
 
 ```c
