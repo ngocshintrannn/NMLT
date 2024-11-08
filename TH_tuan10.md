@@ -8,18 +8,20 @@
 
 using namespace std;
 
-long long binPow(long long a, long long b) {
+#define mod 1000000007
+
+long long binPow(long long a, long long b, long long c) {
   long long res = 1;
   while (b > 0) {
-    if (b % 2 == 1) res *= a;
-    a *= a;
+    if (b % 2 == 1) res = ((a % c) * (a % c)) % c;
+    a = ((a % c) * (a % c) % c);
     b /= 2;
   }
   return res;
 }
 
 int main() {
-  cout << binPow(2, 10000000000);
+  cout << binPow(2, 1000000000, mod);
 }
 ```
 
