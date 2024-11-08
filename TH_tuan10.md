@@ -27,14 +27,14 @@ long long mulMod(long long a, long long b, long long c) {
 }
 
 long long modInverse(long long b, long long c) {
-    long long x, y;
-    long long g = gcdExtended(b, c, &x, &y);
-    if (g != 1)
-        return -1; // Nghịch đảo không tồn tại
-    else {
-        long long res = (x % c + c) % c;
-        return res;
-    }
+  long long x, y;
+  long long g = gcdExtended(b, c, &x, &y);
+  if (g != 1)
+    return -1; // Nghịch đảo không tồn tại
+  else {
+    long long res = (x % c + c) % c;
+    return res;
+  }
 }
 
 long long gcdExtended(long long a, long long b, long long *x, long long *y) {
