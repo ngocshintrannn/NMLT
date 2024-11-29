@@ -519,22 +519,22 @@ int main() {
 
 ```c
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
   int n; cin >> n;
-  vector<int> c(n);
-  for (int &x : c) cin >> x;
-  vector<int> a, b;
-  for (int x : c) {
-    if (x % 2) a.push_back(x);
-    else b.push_back(x); 
+  int d[100], a[100], b[100];
+  int c = 0, l = 0;
+  for (int i = 0; i < n; i++) {
+    int x; cin >> x;
+    if (x % 2) a[l++] = x;
+    else b[c++] = x;
+    d[i] = x;
   }
-  for (int x : a) cout << x << " ";
+  for (int i = 0; i < c; i++) cout << b[i] << " ";
   cout << endl;
-  for (int x : b) cout << x << " ";
+  for (int i = 0; i < l; i++) cout << a[i] << " ";
   return 0;
 }
 ```
@@ -703,6 +703,33 @@ int main() {
     }
   }
   for (int x : a) cout << x << " ";
+  return 0;
+}
+```
+
+### Bài 9
+
+```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int n, m; cin >> n >> m;
+  int a[100], b[100], c[100];
+  for (int i = 0; i < n; i++) cin >> a[i];
+  for (int i = 0; i < m; i++) cin >> b[i];
+  int cnt = 0;
+  while (cnt < n) {
+    c[cnt] = a[cnt];
+    ++cnt;
+  }
+  int j = 0;
+  while (j < m) {
+    c[cnt] = b[j];
+    ++cnt; ++j;
+  }
+  for (int i = 0; i < cnt; i++) cout << c[i] << " ";
   return 0;
 }
 ```
