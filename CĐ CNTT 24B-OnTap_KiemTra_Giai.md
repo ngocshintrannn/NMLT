@@ -173,7 +173,7 @@ int main() {
   int a[SIZE], chan[SIZE], le[SIZE];
   
   do {
-  	restart:
+    restart:
     system("cls");
     cout << "===== MENU =====\n";
     cout << "1. Nhap mang cac so nguyen\n";
@@ -200,14 +200,14 @@ int main() {
 
     if (choose == 0) break;
     else if (choose == -1) continue;
-		else if (choose != 1 && checkNhap == false) {
-	  	cout << "Vui long nhap mang truoc!\n";
+    else if (choose != 1 && checkNhap == false) {
+      cout << "Vui long nhap mang truoc!\n";
       goto try_again;
-		} else checkNhap = true;
+    } else checkNhap = true;
 
     switch (choose) {
     	case -1:
-    		goto restart;
+    	goto restart;
       case 0:
         cout << "Thoat chuong trinh...\n";
         break;
