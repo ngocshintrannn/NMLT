@@ -1,11 +1,10 @@
 # Giải CĐ CNTT 24B-OnTap_KiemTra
 
 ```c
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
-#define faster() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-typedef long long ll;
 
 //others
 const int SIZE = 1005;
@@ -13,7 +12,7 @@ int cntChan = 0, cntLe = 0;
 const int num7 = 1e7;
 int nt[num7+1];
 void sieve() {
-  for (int &x : nt) x = 1;
+  for (int i = 0; i <= num7; ++i) nt[i] = 1;
   nt[0] = nt[1] = 0;
   for (int i = 2; i <= sqrt(num7); ++i) {
     if (nt[i]) {
@@ -24,6 +23,7 @@ void sieve() {
 
 //1
 void nhap(int a[], int n) {
+  cout << "Nhap cac phan tu:\n";
   for (int i = 0; i < n; ++i) cin >> a[i];
 }
 
@@ -145,14 +145,17 @@ void tachChanLe(int a[], int chan[], int le[], int n) {
 
 //15
 void themGiaTri(int a[], int n) {
-  int value, x; cin >> value >> x;
+  int value, x;
+  cout << "Nhap gia tri: "; cin >> value;
+  cout << "Nhap vi tri: "; cin >> x;
   for (int i = n + 1; i > x; --i) a[i] = a[i - 1];
   a[x] = value;
 }
 
 //16
 void themGiaTriTangDan(int a[], int n) {
-  int value; cin >> value;
+  int value;
+  cout << "Nhap gia tri: "; cin >> value;
   for (int i = 1; i < n + 1; ++i) {
     if (value >= a[i - 1] && value <= a[i]) {
       for (int j = n + 1; j > i; --j) a[j] = a[j - 1];
@@ -170,104 +173,128 @@ int main() {
   int a[SIZE], chan[SIZE], le[SIZE];
   
   do {
+  	restart:
     system("cls");
     cout << "===== MENU =====\n";
-    cout << "1. Nhập mảng các số nguyên\n";
-    cout << "2. Xuất mảng các số nguyên\n";
-    cout << "3. Tính tổng các phần tử trong mảng\n";
-    cout << "4. Tính tổng các phần tử là số lẻ\n";
-    cout << "5. Đếm các phần tử là số chẵn\n";
-    cout << "6. Kiểm tra trong mảng có tồn tại số gánh nào hay không?\n";
-    cout << "7. Liệt kê các phần tử là số nguyên tố\n";
-    cout << "8. Xuất ra số chữ số của mỗi phần tử\n";
-    cout << "9. Tìm giá trị lớn nhất trong mảng\n";
-    cout << "10. Tìm giá trị bé nhất trong mảng\n";
-    cout << "11. Tìm giá trị chẵn lớn nhất trong mảng\n";
-    cout << "12. Sắp xếp mảng tăng dần\n";
-    cout << "13. Sắp xếp mảng giảm dần theo chữ số hàng đơn vị của mỗi số\n";
-    cout << "14. Tách mảng thành 1 mảng số chẵn và 1 mảng số lẻ\n";
-    cout << "15. Thêm một giá trị vào vị trí bất kỳ trong mảng\n";
-    cout << "16. Thêm một giá trị vào trong mảng đã sắp xếp tăng dần mà mảng vẫn tăng dần\n";
-    cout << "0. Thoát\n";
+    cout << "1. Nhap mang cac so nguyen\n";
+    cout << "2. Xuat mang cac so nguyen\n";
+    cout << "3. Tinh tong cac phan tu trong mang\n";
+    cout << "4. Tinh tong cac phan tu la so le\n";
+    cout << "5. Dem cac phan tu la so chan\n";
+    cout << "6. Kiem tra trong mang co ton tai so ganh nao hay khong?\n";
+    cout << "7. Liet ke cac phan tu la so nguyen to\n";
+    cout << "8. Xuat ra so chu so cua moi phan tu\n";
+    cout << "9. Tim gia tri lon nhat trong mang\n";
+    cout << "10. Tim gia tri be nhat trong mang\n";
+    cout << "11. Tim gia tri chan lon nhat trong mang\n";
+    cout << "12. Sap xep mang tang dan\n";
+    cout << "13. Sap xep mang giam dan theo chu so hang don vi cua moi so\n";
+    cout << "14. Tach mang thanh mot mang so chan va mot mang so le\n";
+    cout << "15. Them mot gia tri vao vi tri bat ky trong mang\n";
+    cout << "16. Them mot gia tri vao trong mang da sap xep tang dan ma mang van tang dan\n";
+    cout << "-1. Clear man hinh\n";
+    cout << "0. Thoat\n";
     cout << "===== ===== =====\n";
     try_again:
-    cout << "Chọn chức năng (1 - 16): "; cin >> choose;
+    cout << "Chon chuc nang (1 - 16): "; cin >> choose;
 
-    if (choose != 1 && checkNhap == false) {
-      cout << "Vui lòng nhập mảng trước!\n";
+    if (choose == 0) break;
+    else if (choose == -1) continue;
+		else if (choose != 1 && checkNhap == false) {
+	  	cout << "Vui long nhap mang truoc!\n";
       goto try_again;
-    } else checkNhap = true;
+		} else checkNhap = true;
 
     switch (choose) {
+    	case -1:
+    		goto restart;
       case 0:
-        cout << "Thoát chương trình.\n";
+        cout << "Thoat chuong trinh...\n";
         break;
       case 1:
-        cout << "Nhập số phần tử: "; cin >> n;
+        cout << "Nhap so phan tu: "; cin >> n;
         nhap(a, n);
+        goto try_again;
         break;
       case 2:
-        system("cls");
+      	cout << "Cac phan tu trong mang:\n";
         xuat(a, n);
-        cout << "\nEnter de tiep tuc...\n";
-        system("pause");
+        cout << endl;
+        goto try_again;
         break;
       case 3:
-        cout << tong(a, n) << endl;
+        cout << "Tong la: " << tong(a, n) << endl;
+        goto try_again;
         break;
       case 4:
-        cout << tongLe(a, n) << endl;
+        cout << "Tong cac so le la: " << tongLe(a, n) << endl;
+        goto try_again;
         break;
       case 5:
-        cout << demChan(a, n) << endl;
+        cout << "So phan tu chan la: " << demChan(a, n) << endl;
+        goto try_again;
         break;
       case 6:
-        if (checkSoGanh(a, n)) cout << "YES\n";
-        else cout << "NO\n";
+        if (checkSoGanh(a, n)) cout << "Mang ton tai so ganh\n";
+        else cout << "Mang khong ton tai so ganh\n";
+        goto try_again;
         break;
       case 7:
+      	cout << "Cac so nguyen to la:\n";
         listNT(a, n);
         cout << endl;
+        goto try_again;
         break;
       case 8:
+      	cout << "So chu so cua moi phan tu la:\n";
         demChuSo(a, n);
         cout << endl;
+        goto try_again;
         break;
       case 9:
-        cout << findMax(a, n) << endl;
+        cout << "Gia tri lon nhat la: " << findMax(a, n) << endl;
+        goto try_again;
         break;
       case 10:
-        cout << findMin(a, n) << endl;
+        cout << "Gia tri nho nhat la: " << findMin(a, n) << endl;
+        goto try_again;
         break;
       case 11:
-        cout << findMaxChan(a, n) << endl;
+        cout << "Gia tri chan lon nhat la: " << findMaxChan(a, n) << endl;
+        goto try_again;
         break;
       case 12:
+        cout << "Da sap xep tang dan!\n";
         tangDan(a, n);
-        cout << endl;
+        goto try_again;
         break;
       case 13:
+        cout << "Da sap xep giam dan theo chu so!\n";
         giamDanChuSo(a, n);
-        cout << endl;
+        goto try_again;
         break;
       case 14:
         tachChanLe(a, chan, le, n);
         cout << "Mang chan: "; xuat(chan, cntChan); cout << endl;
         cout << "Mang le: "; xuat(le, cntLe); cout << endl;
         cntChan = cntLe = 0;
+        goto try_again;
         break;
       case 15:
         themGiaTri(a, n);
         n++;
-        cout << endl;
+        cout << "Da them gia tri vao mang!\n";
+        goto try_again;
         break;
       case 16:
         themGiaTriTangDan(a, n);
         n++;
-        cout << endl;
+        cout << "Da them gia tri vao mang!\n";
+        goto try_again;
         break;
       default:
-        cout << "Lựa chọn không hợp lệ!\n";
+        cout << "Chuc nang nay khong ton tai!\n";
+        goto try_again;
     }
   } while (choose != 0);
   return 0;
