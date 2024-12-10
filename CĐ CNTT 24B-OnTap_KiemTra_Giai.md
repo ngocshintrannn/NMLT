@@ -206,8 +206,8 @@ int main() {
     } else checkNhap = true;
 
     switch (choose) {
-    	case -1:
-    	goto restart;
+      case -1:
+      goto restart;
       case 0:
         cout << "Thoat chuong trinh...\n";
         break;
@@ -217,7 +217,7 @@ int main() {
         goto try_again;
         break;
       case 2:
-      	cout << "Cac phan tu trong mang:\n";
+        cout << "Cac phan tu trong mang:\n";
         xuat(a, n);
         cout << endl;
         goto try_again;
@@ -240,13 +240,13 @@ int main() {
         goto try_again;
         break;
       case 7:
-      	cout << "Cac so nguyen to la:\n";
+        cout << "Cac so nguyen to la:\n";
         listNT(a, n);
         cout << endl;
         goto try_again;
         break;
       case 8:
-      	cout << "So chu so cua moi phan tu la:\n";
+        cout << "So chu so cua moi phan tu la:\n";
         demChuSo(a, n);
         cout << endl;
         goto try_again;
