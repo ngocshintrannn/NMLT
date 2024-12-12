@@ -156,7 +156,7 @@ void themGiaTri(int a[], int n) {
 void themGiaTriTangDan(int a[], int n) {
   int value;
   cout << "Nhap gia tri: "; cin >> value;
-  for (int i = 1; i < n + 1; ++i) {
+  for (int i = 1; i < n; ++i) {
     if (value >= a[i - 1] && value <= a[i]) {
       for (int j = n + 1; j > i; --j) a[j] = a[j - 1];
       a[i] = value;
